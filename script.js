@@ -25,7 +25,7 @@
 let weekDay = moment()
 $("#currentDay").text(weekDay.format("dddd, MMMM Do YYYY HH:mm:ss A"))
 let hours = [9, 10, 11, 12, 13, 14, 15, 16, 17]
-
+const now = moment().hour()
 
 
 const timeDiv = document.querySelector("#currentDay")
@@ -36,6 +36,21 @@ setInterval(() => {
 for (const hour of hours){
   const value = localStorage.getItem(hour)
   $("#" + hour).find("textarea").val(value)
+  let row = document.getElementById(hour.toString())
+  console.log(row)
+  if (hour < now){
+    row.classList.add("past")
+  }
+  else if(now === hour){
+    row.classList.add("present")
+  }
+  else{
+    row.classList.add("future")
+  }
+
+
+
+
 }
 
 
