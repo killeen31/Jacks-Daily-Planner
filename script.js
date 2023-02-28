@@ -24,11 +24,26 @@
 
 let weekDay = moment()
 $("#currentDay").text(weekDay.format("dddd, MMMM Do YYYY HH:mm:ss A"))
+let hours = [9, 10, 11, 12, 13, 14, 15, 16, 17]
+
+
 
 const timeDiv = document.querySelector("#currentDay")
 setInterval(() => {
   timeDiv.innerHTML = new Date()
 },1000)
+
+for (const hour of hours){
+  const value = localStorage.getItem(hour)
+  $("#" + hour).find("textarea").val(value)
+}
+
+
+$(".saveBtn").on("click", function(){
+  const id = $(this).parent().attr("id")
+  const value = $(this).parent().find("textarea").val()
+  localStorage.setItem(id, value)
+})
 
 
 
